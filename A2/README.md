@@ -39,4 +39,4 @@ ip 192.168.24.2 255.255.255.0 192.168.24.1
 - Lokaler Route auf Windows erstellen
 
 ## Reflexion
-Die Übung war für mich ziemlich Simpel, jedoch überlegte ich zuerst in die falsche Richtung, denn ich dachte man müsste ein Portforwarding konfigurieren. Weshalb ich in Zukunft die Videos zuerst anschauen werden bevor ich die aufgabe ausführe.
+Die Übung war für mich ziemlich Simpel, jedoch überlegte ich zuerst in die falsche Richtung, denn ich dachte man müsste ein Portforwarding konfigurieren. Weshalb ich in Zukunft die Videos zuerst anschauen werden, bevor ich die Aufgabe ausführe.

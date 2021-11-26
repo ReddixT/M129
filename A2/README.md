@@ -6,11 +6,14 @@
 ![GNS3 Screenshot meines Labors](images/gns3_QDptCL6CTE.png)
 
 ## Windows Konfiguration
+```
 Im CMD als Admin
 route -p ADD 192.168.24.0 MASK 255.255.255.0 192.168.23.24
+```
 
 ## Cisco Konfiguration
 ### Commands
+```
 enable
 config t
     int f0/0
@@ -22,9 +25,12 @@ config t
         no shut 
     exit
 exit
+```
 
 ## VPC Konfiguration
+```
 ip 192.168.24.2 255.255.255.0 192.168.24.1
+```
 
 ## Quellen
 - https://www.howtogeek.com/howto/windows/adding-a-tcpip-route-to-the-windows-routing-table/

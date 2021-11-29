@@ -1,42 +1,31 @@
 # Dokumentation Übung 1 
-- Datum: 26.11.2021
+- Datum: 29.11.2021
 - Name: René Luan Ottenburg
-- [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/20_GNS3%20Einf%C3%BChrung)
+- [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/20_GNS3%20Einf%C3%BChrung#1-zwei-vpcs-pingen-sich-gegenseitig)
 
-![GNS3 Screenshot meines Labors](images/gns3_QDptCL6CTE.png)
+![GNS3 Screenshot meines Labors](images/gns3_NuwJnzsbnJ.png)
 
-## Windows Konfiguration
+## PC2 Konfiguration
 ```
-Im CMD als Admin
-route -p ADD 192.168.24.0 MASK 255.255.255.0 192.168.23.24
+ip 192.168.100.1
 ```
-
-## Cisco Konfiguration
-### Commands
+## PC3 Konfiguration
 ```
-enable
-config t
-    int f0/0
-        ip add 192.168.23.24 255.255.255.0
-        no shut 
-    exit
-    int f1/0
-        ip add 192.168.24.1 255.255.255.0
-        no shut 
-    exit
-exit
+ip 192.168.100.2
 ```
-
-## VPC Konfiguration
+## Test
 ```
-ip 192.168.24.2 255.255.255.0 192.168.24.1
+Von P2:
+p 192.168.100.2
 ```
-
-## Quellen
-- https://www.howtogeek.com/howto/windows/adding-a-tcpip-route-to-the-windows-routing-table/
-
+![Ping auf P2](images/Solar-PuTTY_zCiQ8BRwYx.png)
+```
+Von P3:
+p 192.168.100.1
+```
+![Ping auf P3](images/Solar-PuTTY_Aw46R7iCdm.png)
 ## Neue Lerninhalte
-- Lokaler Route auf Windows erstellen
+- 
 
 ## Reflexion
-Die Übung war für mich ziemlich Simpel, jedoch überlegte ich zuerst in die falsche Richtung, denn ich dachte man müsste ein Portforwarding konfigurieren. Weshalb ich in Zukunft die Videos zuerst anschauen werden, bevor ich die Aufgabe ausführe.
+Viel konnte ich aus der Übung nicht lernen, da ich GNS3 schonmal gebraucht habe und die Commands für die Zuweisung der IP's schon kenne.

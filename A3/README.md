@@ -3,7 +3,7 @@
 - Name: René Luan Ottenburg
 - [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/07_GNS3%20Labor%20Anforderungen#4-labor-3-ping-%C3%BCber-router-3-subnetze-und-lokalem-pc)
 
-![GNS3 Screenshot meines Labors](images\gns3_P2UYCK7UI9.png)
+![GNS3 Screenshot meines Labors](images/gns3_P2UYCK7UI9.png)
 
 ## Windows Konfiguration
 ```

@@ -1,93 +1,100 @@
 # Dokumentation Übung 5 
-- Datum: 10.12.2021
+- Datum: 14.1.2022
 - Name: René Luan Ottenburg
 - [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/07_GNS3%20Labor%20Anforderungen#6-labor-5-labor-mit-zwei-router-und-dhcp-server)
 
-![GNS3 Screenshot meines Labors](images\gns3_P2UYCK7UI9.png)
+![GNS3 Screenshot meines Labors](images\gns3_cvIpU3mkrr.png)
 
 ## Windows Konfiguration
 ```
 Im CMD als Admin
-route -p ADD 192.168.0.0 MASK 255.255.0.0 192.168.23.24
+route -p ADD 192.168.46.0 MASK 255.255.255.0 192.168.23.20
+route -p ADD 192.168.47.0 MASK 255.255.255.0 192.168.23.41
 ```
 
-## Cisco Konfiguration
-### Commands R2
-```
-enable
-config t
-    int f0/0
-        ip add 192.168.255.1 255.255.255.252
-        no shut 
-    exit
-    int e4/0
-        ip add 192.168.11.1 255.255.255.0
-        no shut 
-    exit
-    int e4/1
-        ip add 192.168.23.24 255.255.255.0
-        no shut 
-    exit
-    ip route 192.168.0.0 255.255.0.0 192.168.255.2
-exit
-```
-### Commands R3
-```
-enable
-config t
-    int f0/0
-        ip add 192.168.255.2 255.255.255.252
-        no shut 
-    exit
-    int f1/0
-        ip add 192.168.255.5 255.255.255.252
-        no shut 
-    exit
-    int e4/0
-        ip add 192.168.21.1 255.255.255.0
-        no shut 
-    exit
-    ip route 192.168.11.0 255.255.255.0 192.168.255.1
-    ip route 192.168.23.0 255.255.255.0 192.168.255.1
-    ip route 192.168.193.0 255.255.255.0 192.168.255.6
-exit
-```
+## MikroTik Konfiguration
 ### Commands R1
 ```
-enable
-config t
-    int f0/0
-        ip add 192.168.255.6 255.255.255.252
-        no shut 
-    exit
-    int e4/0
-        ip add 192.168.129.1 255.255.255.0
-        no shut 
-    exit
-    ip route 192.168.11.0 255.255.255.0 192.168.255.5
-    ip route 192.168.23.0 255.255.255.0 192.168.255.5
-    ip route 192.168.129.0 255.255.255.0 192.168.255.5
-exit
-```
+/interface bridge
+add name=bridge_vlan
 
+/interface bridge port
+add bridge=bridge_vlan interface=ether3
+add bridge=bridge_vlan interface=ether4
+
+/interface vlan
+add interface=bridge_vlan name=vlan1 vlan-id=1
+
+/ip pool
+add name=dhcp_pool0 ranges=192.168.47.10-192.168.47.254
+
+/ip dhcp-server
+add address-pool=dhcp_pool0 interface=bridge_vlan name=dhcp1
+
+/ip dhcp-server network
+add address=192.168.47.0/24 gateway=192.168.47.1
+
+/ip address
+add address=192.168.47.1/24 interface=bridge_vlan network=192.168.47.0
+add address=192.168.255.1/30 interface=ether2 network=192.168.255.0
+add address=192.168.23.20/24 interface=ether1 network=192.168.23.0
+
+/ip firewall address-list
+add address=192.168.23.0/24 list=diable_ping_23
+
+/ip firewall filter
+add action=drop chain=forward dst-address=192.168.47.0/24 protocol=icmp src-address=192.168.23.0/24
+```
+### Commands R2
+```
+/interface bridge
+add name=bridge_vlan
+
+/interface bridge port
+add bridge=bridge_vlan interface=ether3
+add bridge=bridge_vlan interface=ether4
+
+/interface vlan
+add interface=bridge_vlan name=vlan1 vlan-id=1
+
+/ip pool
+add name=dhcp_pool0 ranges=192.168.47.10-192.168.47.254
+
+/ip dhcp-server
+add address-pool=dhcp_pool0 interface=bridge_vlan name=dhcp1
+
+/ip dhcp-server network
+add address=192.168.47.0/24 gateway=192.168.47.1
+
+/ip address
+add address=192.168.47.1/24 interface=bridge_vlan network=192.168.47.0
+add address=192.168.255.2/30 interface=ether2 network=192.168.255.0
+add address=192.168.23.21/24 interface=ether1 network=192.168.23.0
+```
 ## VPC Konfiguration
-### Commands PC4
-```
-ip 192.168.11.10 255.255.255.0 192.168.11.1
-```
-### Commands PC5
-```
-ip 192.168.129.10 255.255.255.0 192.168.129.1
-```
 ### Commands PC1
 ```
-ip 192.168.193.10 255.255.255.0 192.168.193.1
+dhcp
+```
+### Commands PC2
+```
+dhcp
+```
+### Commands PC3
+```
+dhcp
+```
+### Commands PC4
+```
+dhcp
 ```
 ## Quellen
-- https://www.howtogeek.com/howto/windows/adding-a-tcpip-route-to-the-windows-routing-table/
+- https://help.mikrotik.com/
 
 ## Neue Lerninhalte
-- Routing mit einem Eintrag in verschiedene Netzwerke
+- IP setzten mit Mikrotik
+- DHCP Server aufsetzten mit Mikrotik
+- Firewallrules setzten mit Mikrotik
 
 ## Reflexion
-Die Anforderung "Auf R1 ist für Netz B und D nur eine Route eingetragen" machte die Aufgabe interessanter. Jedoch löste ich dies durch einen Route der aufs Subnetz "192.168.0.0 255.255.0.0" zeigt. Dieser Routet .193.0 und .129.0 zum nächsten Router weiter
+Ich habe nicht erwartet, dass Mikrotik so gut ist. Das beste an Mikrotik ist eigentlich deren help Seite, denn da steht ziemlich alles kurz und knapp und nicht wie bei Cisco sehr komplex. Das Problem mit dem DHCP Server aktivieren konnte ich nicht herrausfinden, weswegen ich auf Mikrotik wechselte.

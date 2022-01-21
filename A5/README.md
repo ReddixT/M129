@@ -3,7 +3,7 @@
 - Name: René Luan Ottenburg
 - [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/07_GNS3%20Labor%20Anforderungen#6-labor-5-labor-mit-zwei-router-und-dhcp-server)
 
-![GNS3 Screenshot meines Labors](images/gns3_cvIpU3mkrr.png)
+![GNS3 Screenshot meines Labors](images/gns3_cvIpU3mkr.png)
 
 ## Windows Konfiguration
 ```

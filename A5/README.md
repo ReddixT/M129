@@ -3,13 +3,13 @@
 - Name: René Luan Ottenburg
 - [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/07_GNS3%20Labor%20Anforderungen#6-labor-5-labor-mit-zwei-router-und-dhcp-server)
 
-![GNS3 Screenshot meines Labors](images\gns3_cvIpU3mkrr.png)
+![GNS3 Screenshot meines Labors](images/gns3_cvIpU3mkrr.png)
 
 ## Windows Konfiguration
 ```
 Im CMD als Admin
 route -p ADD 192.168.46.0 MASK 255.255.255.0 192.168.23.20
-route -p ADD 192.168.47.0 MASK 255.255.255.0 192.168.23.41
+route -p ADD 192.168.47.0 MASK 255.255.255.0 192.168.23.21
 ```
 
 ## MikroTik Konfiguration
@@ -44,6 +44,9 @@ add address=192.168.23.0/24 list=diable_ping_23
 
 /ip firewall filter
 add action=drop chain=forward dst-address=192.168.47.0/24 protocol=icmp src-address=192.168.23.0/24
+
+/ip route
+add dst-address=192.168.47.0/24 gateway=192.168.255.2
 ```
 ### Commands R2
 ```
@@ -70,6 +73,9 @@ add address=192.168.47.0/24 gateway=192.168.47.1
 add address=192.168.47.1/24 interface=bridge_vlan network=192.168.47.0
 add address=192.168.255.2/30 interface=ether2 network=192.168.255.0
 add address=192.168.23.21/24 interface=ether1 network=192.168.23.0
+
+/ip route
+add dst-address=192.168.46.0/24 gateway=192.168.255.1
 ```
 ## VPC Konfiguration
 ### Commands PC1

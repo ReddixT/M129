@@ -78,7 +78,7 @@ dhcp
 - https://help.mikrotik.com/
 
 ## Neue Lerninhalte
-- NAT aufsetzten in Mikrotik
+- 
 
 ## Reflexion
-Das NAT in Mikrotik ist sehr simpel. Ausserdem konnte ich das GUI für den Debian Client schnell herunterladen dadurch, dass ich den Computer direkt ans NAT angeschlossen habe.
+Ich arbeitete eher lange an dem Labor da ich keinen DNS gesetzt hatte. Dadurch das ich dies auf dem einten Router mal testete ging es auf einem Gerät aber im anderen Netzwerk nicht.

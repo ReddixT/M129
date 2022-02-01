@@ -1,7 +1,7 @@
 # Dokumentation Übung 1 
 - Datum: 29.11.2021
 - Name: René Luan Ottenburg
-- [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/20_GNS3%20Einf%C3%BChrung#1-zwei-vpcs-pingen-sich-gegenseitig)
+- [Link zur Aufgabenstellung](https://gitlab.com/ch-tbz-it/Stud/m129/-/tree/main/07_GNS3%20Labor%20Anforderungen#2-labor-1-ping-mit-switch)
 
 ![GNS3 Screenshot meines Labors](images/gns3_NuwJnzsbnJ.png)
 
